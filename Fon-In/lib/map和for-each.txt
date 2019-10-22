@@ -1,0 +1,30 @@
+作用：对数组的每个元素执行一次提供的函数
+jq也有一个方法：$.each()与foreach()功能类似
+
+
+语法：
+foreach
+array.forEach(callback(currentValue,index,array){
+	do something
+},this)
+
+或者
+array.forEach(callback(currenValue,index,array){
+	do something
+})
+
+map
+var new_array = arr.map(callback[,thisArg])
+
+$.each()
+$(selector).each(function(index,element))   注意参数顺序
+
+
+callback：为数组中每个元素执行的函数，该函数接收三个参数，
+参数一：当前数组中元素；参数二：索引；参数三：当前数组。
+this：可选，执行回调时候，this的指向
+
+区别：foreach的返回值时undefined，不可以链式调用。
+map返回一个新数组，原数组不会改变。
+没有办法终止或者跳出foreach循环，除非抛出异常，所以想执行一个数组是否满足什么条件，返回布尔值，可以用一般的for循环实现，或者用Array.every()或者Array.some();
+$.each方法规定为每个匹配元素规定运行的函数，可以返回false可用于及早停止循环
